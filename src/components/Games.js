@@ -2,18 +2,22 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
-import loadDetail from "../Actions/dataActions";
+import { loadDetail } from "../Actions/dataActions";
+import { Link } from "react-router-dom";
 
 const Game = ({ name, released, image, id }) => {
   const dispatch = useDispatch();
   const loadDetailHandler = () => {
     dispatch(loadDetail(id));
   };
+
   return (
-    <StyledGame onClick={loadDetailHandler()}>
-      <h3>{name}</h3>
-      <p>{released}</p>
-      <img src={image} alt={name} />
+    <StyledGame onClick={loadDetailHandler}>
+      <Link to={`/game/${id}`}>
+        <h3>{name}</h3>
+        <p>{released}</p>
+        <img src={image} alt={name} />
+      </Link>
     </StyledGame>
   );
 };

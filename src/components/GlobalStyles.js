@@ -7,12 +7,16 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
 }
 html{
+    
     &::-webkit-scrollbar{
        width: 0.5rem;
     }
     &::-webkit-scrollbar-thumb{
         background-color: darkgrey;
     }
+    &::-webkit-scrollbar-track {
+    background: white;
+  }
 body{
     font-family: 'Montserrat', sans-serif;
     width: 100%;
@@ -25,7 +29,7 @@ h2{
 h3{
     font-size: 1.3rem;
     color: #333;
-    padding: 1.5rem;
+    padding: 1.5rem 0;
 
 }
 p{
