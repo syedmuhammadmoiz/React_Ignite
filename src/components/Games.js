@@ -5,8 +5,11 @@ import { useDispatch } from "react-redux";
 import { loadDetail } from "../Actions/dataActions";
 import { Link } from "react-router-dom";
 import { Imageresize } from "../util";
+import { popUp } from "../animation";
 
 const Game = ({ name, released, image, id }) => {
+  const stringId = id.toString();
+
   const dispatch = useDispatch();
   const loadDetailHandler = () => {
     document.body.style.overflow = "hidden";
@@ -14,11 +17,21 @@ const Game = ({ name, released, image, id }) => {
   };
 
   return (
-    <StyledGame onClick={loadDetailHandler}>
+    <StyledGame
+      variants={popUp}
+      initial="hidden"
+      animate="show"
+      layoutId={stringId}
+      onClick={loadDetailHandler}
+    >
       <Link to={`/game/${id}`}>
-        <h3>{name}</h3>
+        <motion.h3 layoutId={`title ${stringId}`}>{name}</motion.h3>
         <p>{released}</p>
-        <img src={Imageresize(image, 640)} alt={name} />
+        <motion.img
+          layoutId={`image ${stringId}`}
+          src={Imageresize(image, 640)}
+          alt={name}
+        />
       </Link>
     </StyledGame>
   );
